@@ -15,18 +15,19 @@ export interface DuoCardProps{
 }
 
 interface Props{
-  data: DuoCardProps
+  data: DuoCardProps;
+  onConnect: () => void;
 }
 
 
-export function DuoCard({data}:Props) {
+export function DuoCard({data, onConnect}:Props) {
   return (
     <View style={styles.container}>
         <DuoInfo label='Nome' value={data.name} />
         <DuoInfo label='Tempo de jogo' value={`${data.yearsPlaying} anos`} />
         <DuoInfo label='Disponibilidade' value={`${data.weekDays.length} dias \u2022 ${data.hourStart} - ${data.hourEnd}`} />
         <DuoInfo label='Chama de Áudio' value={data.useVoiceChannel? 'Sim': 'Não'} colorValue={data.useVoiceChannel? THEME.COLORS.SUCCESS : THEME.COLORS.ALERT} />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onConnect}>
           <Text style={styles.buttonTitle}> Conectar </Text>
         </TouchableOpacity>
 

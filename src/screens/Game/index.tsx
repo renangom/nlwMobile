@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { FlatList, Image, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Background } from '../../Components/Background';
 import { styles } from './styles';
@@ -46,8 +46,9 @@ export function Game() {
         </View>
         <Image source={{uri:game.bannerUrl}} style={styles.cover} resizeMode="cover" />
         <Heading title={game.title} subtitle='Conecte-se e comece a jogar' />
-        <FlatList data={duos} keyExtractor={item => item.id} renderItem={({item}) => (
-          <DuoCard data={item} />
+        <FlatList ListEmptyComponent={() => (<Text style={styles.inputListText}>Não há anuncios para esse jogo ainda.</Text>)} style={styles.containerList} horizontal contentContainerStyle={styles.contentList} showsHorizontalScrollIndicator={false} data={duos} keyExtractor={item => item.id} renderItem={({item}) => (
+          <DuoCard onConnect={() => {}} data={item} />
+          
         )} />
       </SafeAreaView>
     </Background>
